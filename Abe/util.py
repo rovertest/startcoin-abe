@@ -34,10 +34,10 @@ def determine_db_dir():
     import os.path
     import platform
     if platform.system() == "Darwin":
-        return os.path.expanduser("~/Library/Application Support/Bitcoin/")
+        return os.path.expanduser("~/Library/Application Support/StartCOIN/")
     elif platform.system() == "Windows":
-        return os.path.join(os.environ['APPDATA'], "Bitcoin")
-    return os.path.expanduser("~/.bitcoin")
+        return os.path.join(os.environ['APPDATA'], "StartCOIN")
+    return os.path.expanduser("~/.startcoin")
 
 # This function comes from bitcointools, bct-LICENSE.txt.
 def long_hex(bytes):

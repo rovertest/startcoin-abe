@@ -27,6 +27,7 @@ def create(policy, **kwargs):
     if policy == "LegacyNoBit8":    return Sha256Chain(**kwargs)
     if policy == "NovaCoin":        return NovaCoin(**kwargs)
     if policy == "CryptoCash":      return CryptoCash(**kwargs)
+    if policy == "StartCOIN":       return StartCOIN(**kwargs)
     return Sha256NmcAuxPowChain(**kwargs)
 
 
@@ -345,3 +346,15 @@ class CryptoCash(NvcChain):
 
     datadir_conf_file_name = "Cash.conf"
     datadir_rpcport = 3941
+
+class StartCOIN(LtcScryptChain):
+    def __init__(chain, **kwargs):
+        chain.name = 'StartCOIN'
+        chain.code3 = 'START'
+        chain.address_version = "\x7d"
+        chain.script_addr_vers = "\x70"
+        chain.magic = "\xff\xc4\xba\xdf"
+        Chain.__init__(chain, **kwargs)
+
+    datadir_conf_file_name = "startcoin.conf"
+    datadir_rpcport = 7347

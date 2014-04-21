@@ -20,14 +20,14 @@ import BCDataStream
 import util
 
 def create(policy, **kwargs):
-    #print "create(%s, %r)" % (policy, kwargs)
-    if policy in [None, "Bitcoin"]: return Bitcoin(**kwargs)
+    print "create(%s, %r)" % (policy, kwargs)
+    if policy in [None, "StartCOIN"]: return StartCOIN(**kwargs)
+    if policy == "Bitcoin":         return Bitcoin(**kwargs)
     if policy == "Testnet":         return Testnet(**kwargs)
-    if policy == "Namecoin":        return Namecoin(**kwargs)
-    if policy == "LegacyNoBit8":    return Sha256Chain(**kwargs)
-    if policy == "NovaCoin":        return NovaCoin(**kwargs)
-    if policy == "CryptoCash":      return CryptoCash(**kwargs)
-    if policy == "StartCOIN":       return StartCOIN(**kwargs)
+    #if policy == "Namecoin":        return Namecoin(**kwargs)
+    #if policy == "LegacyNoBit8":    return Sha256Chain(**kwargs)
+    #if policy == "NovaCoin":        return NovaCoin(**kwargs)
+    #if policy == "CryptoCash":      return CryptoCash(**kwargs)
     return Sha256NmcAuxPowChain(**kwargs)
 
 
@@ -347,13 +347,13 @@ class CryptoCash(NvcChain):
     datadir_conf_file_name = "Cash.conf"
     datadir_rpcport = 3941
 
-class StartCOIN(LtcScryptChain):
+class StartCOIN(Sha256Chain):
     def __init__(chain, **kwargs):
         chain.name = 'StartCOIN'
         chain.code3 = 'START'
-        chain.address_version = "\x7d"
-        chain.script_addr_vers = "\x70"
-        chain.magic = "\xff\xc4\xba\xdf"
+        chain.address_version = '\x7d'
+        chain.script_addr_vers = '\x70'
+        chain.magic = '\xff\xc4\xba\xdf'
         Chain.__init__(chain, **kwargs)
 
     datadir_conf_file_name = "startcoin.conf"

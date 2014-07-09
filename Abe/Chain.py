@@ -229,6 +229,11 @@ class Sha256Chain(Chain):
     def block_header_hash(chain, header):
         return util.double_sha256(header)
 
+class X11Chain(Chain):
+    def block_header_hash(chain, header):
+	import xcoin_hash
+	return xcoin_hash.x11(header)
+
 class Bitcoin(Sha256Chain):
     def __init__(chain, **kwargs):
         chain.name = 'Bitcoin'
@@ -347,7 +352,7 @@ class CryptoCash(NvcChain):
     datadir_conf_file_name = "Cash.conf"
     datadir_rpcport = 3941
 
-class StartCOIN(Sha256Chain):
+class StartCOIN(X11Chain):
     def __init__(chain, **kwargs):
         chain.name = 'StartCOIN'
         chain.code3 = 'START'
@@ -357,4 +362,4 @@ class StartCOIN(Sha256Chain):
         Chain.__init__(chain, **kwargs)
 
     datadir_conf_file_name = "startcoin.conf"
-    datadir_rpcport = 7347
+    datadir_rpcport = 9347

@@ -232,7 +232,7 @@ class Sha256Chain(Chain):
 class X11Chain(Chain):
     def block_header_hash(chain, header):
 	import xcoin_hash
-	return xcoin_hash.x11(header)
+        return xcoin_hash.getPoWHash(header)
 
 class Bitcoin(Sha256Chain):
     def __init__(chain, **kwargs):
